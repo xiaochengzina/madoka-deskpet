@@ -2,11 +2,17 @@
 
 一个 [Driftlet](https://github.com/xiaochengzina/Driftlet) 桌面皮肤：Live2D 桌面宠物——鼠标跟随、自动眨眼、自然呼吸、点击切换发光表情。
 
-A desktop pet skin for [Driftlet](https://github.com/xiaochengzina/Driftlet), rendered with Live2D Cubism: mouse tracking, auto blink, breathing, tap-to-glow.
+A desktop-pet skin for [Driftlet](https://github.com/xiaochengzina/Driftlet) rendered with Live2D Cubism — mouse tracking, auto blink, breathing, tap-to-glow.
 
 ![预览 / Preview](preview.png)
 
-## 功能 / Features
+[中文](#中文) · [English](#english)
+
+---
+
+## 中文
+
+### 功能
 
 - 鼠标跟随：模型视线跟随鼠标移动（可在设置中开关）
 - 自动眨眼与自然呼吸
@@ -14,13 +20,13 @@ A desktop pet skin for [Driftlet](https://github.com/xiaochengzina/Driftlet), re
 - 模型缩放（0.5×–2.0×）
 - 中英双语设置面板，配置随管理器持久化
 
-## 安装 / Install
+### 安装
 
 1. 安装 [Driftlet](https://github.com/xiaochengzina/Driftlet/releases)。
 2. 从本仓库 [Releases](../../releases) 下载最新的 `.dskin` 包。
 3. 双击 `.dskin` 文件，或在 Driftlet 管理器中点「+ 添加皮肤」选择该文件。
 
-## 从源码运行 / Run from Source
+### 从源码运行
 
 本仓库**不包含** `cubismcore.min.js`（Live2D Cubism Core 是 Live2D Inc. 的专有软件，不随源码分发）：
 
@@ -30,7 +36,7 @@ A desktop pet skin for [Driftlet](https://github.com/xiaochengzina/Driftlet), re
 
 打包分发：放入 `cubismcore.min.js` 后用 Driftlet 自带的 `tools\pack-skin.exe` 生成 `.dskin`。
 
-## 许可证 / License
+### 许可证
 
 本仓库采用分层授权，请按文件类型区分：
 
@@ -41,17 +47,61 @@ A desktop pet skin for [Driftlet](https://github.com/xiaochengzina/Driftlet), re
 | `cubismcore.min.js`（仅存在于发布包） | Live2D Inc. 专有软件，见 [NOTICE.txt](NOTICE.txt) |
 | `pixi.min.js`、`live2d.min.js` | MIT，见 [NOTICE.txt](NOTICE.txt) |
 
-模型由画师【画师署名】创作，本人已买断著作财产权；署名权归画师所有。
+模型由画师 [Twi棱镜](https://space.bilibili.com/25894873) 创作，本人已买断著作财产权；署名权归画师所有。
 
-This project uses split licensing: original code is MIT-licensed; the model
-assets under `model/` are all rights reserved (usable only as part of this
-skin); Live2D Cubism Core is proprietary software of Live2D Inc. — see
-[NOTICE.txt](NOTICE.txt) for details.
+### 致谢
 
-## 致谢 / Credits
-
-- 模型 / Model：【画师署名】
+- 模型 / Model：[Twi棱镜](https://space.bilibili.com/25894873)
 - [Driftlet](https://github.com/xiaochengzina/Driftlet) — 桌面皮肤管理器（GPL-3.0）
 - [PixiJS](https://github.com/pixijs/pixijs)（MIT）
 - [pixi-live2d-display](https://github.com/guansss/pixi-live2d-display)（MIT）
 - Live2D Cubism Core © Live2D Inc.（专有软件，[许可协议](https://www.live2d.com/eula/live2d-proprietary-software-license-agreement_en.html)）
+
+---
+
+## English
+
+### Features
+
+- Mouse tracking: the model's gaze follows your cursor (toggleable in settings)
+- Auto blink and natural breathing
+- Tap to toggle the glow expression; supports always-on glow and random auto pulses
+- Model scale from 0.5× to 2.0×
+- Bilingual (Chinese/English) settings panel; preferences persist in the host manager
+
+### Install
+
+1. Install [Driftlet](https://github.com/xiaochengzina/Driftlet/releases).
+2. Download the latest `.dskin` package from [Releases](../../releases).
+3. Double-click the `.dskin` file, or click "+ Add Skin" in the Driftlet manager and choose it.
+
+### Run from Source
+
+This repository does **not** include `cubismcore.min.js` — Live2D Cubism Core is proprietary software of Live2D Inc. and is not distributed with the source code:
+
+1. Download the Cubism SDK for Web from the [Live2D official site](https://www.live2d.com/download/cubism-sdk/) (which requires accepting its license agreement);
+2. Copy `live2dcubismcore.min.js` from the SDK into this folder and rename it to `cubismcore.min.js`;
+3. Copy the whole folder into `<Driftlet installation>\skins\`, then refresh and load it in the manager.
+
+To package for distribution: with `cubismcore.min.js` in place, run Driftlet's bundled `tools\pack-skin.exe` to produce a `.dskin` package.
+
+### License
+
+This project uses split licensing — please check by file type:
+
+| Content | License |
+|---|---|
+| Original code (`index.html`, `main.js`, `skin.json`, etc.) | [MIT](LICENSE) © 2026 小城子 |
+| Model assets under `model/` | All rights reserved; usable only as part of this skin — see [model/LICENSE](model/LICENSE) |
+| `cubismcore.min.js` (release packages only) | Proprietary software of Live2D Inc. — see [NOTICE.txt](NOTICE.txt) |
+| `pixi.min.js`, `live2d.min.js` | MIT — see [NOTICE.txt](NOTICE.txt) |
+
+The model was created by [Twi棱镜](https://space.bilibili.com/25894873). The economic copyrights have been fully transferred (buyout); the artist retains the right of attribution.
+
+### Credits
+
+- Model: [Twi棱镜](https://space.bilibili.com/25894873)
+- [Driftlet](https://github.com/xiaochengzina/Driftlet) — desktop skin manager (GPL-3.0)
+- [PixiJS](https://github.com/pixijs/pixijs) (MIT)
+- [pixi-live2d-display](https://github.com/guansss/pixi-live2d-display) (MIT)
+- Live2D Cubism Core © Live2D Inc. (proprietary — [license agreement](https://www.live2d.com/eula/live2d-proprietary-software-license-agreement_en.html))
