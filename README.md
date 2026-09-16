@@ -1,4 +1,4 @@
-# Madoka 桌宠 / Madoka Desk Pet
+# Madoka 桌宠 / Madoka DeskPet
 
 一个 [Driftlet](https://github.com/xiaochengzina/Driftlet) 桌面皮肤：Live2D 桌面宠物——鼠标跟随、自动眨眼、自然呼吸、点击切换发光表情。
 

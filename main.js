@@ -1,4 +1,4 @@
-// Madoka Desk Pet —— Driftlet 皮肤
+// Madoka DeskPet —— Driftlet 皮肤
 // 模型: Cubism 3 (moc3) via pixi-live2d-display + Cubism Core
 // 功能: 鼠标跟随 / 自动眨眼 / 自然呼吸 / 发光表情（常亮 + 自动脉冲）/ 设置联动
 //
