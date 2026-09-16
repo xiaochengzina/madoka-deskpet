@@ -1,0 +1,82 @@
+{
+  "id": "madoka-deskpet",
+  "name_zh": "Madoka 桌宠",
+  "name_en": "Madoka Desk Pet",
+  "version": "1.0.0",
+  "author": "小城子",
+  "description_zh": "Live 2D 桌面宠物 —— 鼠标跟随、眨眼呼吸、点击切换发光表情",
+  "description_en": "Live 2D desktop pet — mouse tracking, eye blink, breath, tap to toggle glow",
+  "entry": "index.html",
+  "window": {
+    "width": 420,
+    "height": 380,
+    "transparent": true,
+    "always_on_top": false,
+    "on_desktop": true,
+    "resizable": false,
+    "opacity": 1.0,
+    "edge_snap": true,
+    "snap_gap": 10
+  },
+  "permissions": [],
+  "settings": [
+    {
+      "key": "glow",
+      "type": "boolean",
+      "label_zh": "发光效果（常亮）",
+      "label_en": "Glow Effect (Always On)",
+      "group_zh": "外观",
+      "group_en": "Appearance",
+      "description_zh": "开启后模型一直保持发光状态",
+      "description_en": "Keep the glow effect always on",
+      "default": false
+    },
+    {
+      "key": "auto_glow",
+      "type": "boolean",
+      "label_zh": "自动发光",
+      "label_en": "Auto Glow",
+      "group_zh": "外观",
+      "group_en": "Appearance",
+      "description_zh": "常亮关闭时，每隔几秒随机触发一次短暂发光",
+      "description_en": "Randomly triggers brief glow pulses when always-on glow is off",
+      "default": true
+    },
+    {
+      "key": "model_scale",
+      "type": "slider",
+      "label_zh": "模型缩放",
+      "label_en": "Model Scale",
+      "group_zh": "外观",
+      "group_en": "Appearance",
+      "description_zh": "调整模型显示大小",
+      "description_en": "Adjust model display size",
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.1,
+      "default": 1.0
+    },
+    {
+      "key": "mouse_tracking",
+      "type": "boolean",
+      "label_zh": "鼠标跟随",
+      "label_en": "Mouse Tracking",
+      "group_zh": "行为",
+      "group_en": "Behavior",
+      "description_zh": "模型视线跟随鼠标移动",
+      "description_en": "Model gaze follows the mouse cursor",
+      "default": false
+    },
+    {
+      "key": "auto_blink",
+      "type": "boolean",
+      "label_zh": "自动眨眼",
+      "label_en": "Auto Blink",
+      "group_zh": "行为",
+      "group_en": "Behavior",
+      "description_zh": "模型自动眨眼",
+      "description_en": "Model auto blinks",
+      "default": true
+    }
+  ]
+}

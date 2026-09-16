@@ -1,0 +1,89 @@
+{
+  "Version": 3,
+  "Type": 0,
+  "FileReferences": {
+    "Moc": "339.moc3",
+    "Textures": [
+      "339.1024/texture_00.png",
+      "339.1024/texture_01.png"
+    ],
+    "Physics": "339.physics3.json",
+    "PhysicsV2": {
+      "File": "339.physics3.json"
+    },
+    "Motions": {
+      "Tap": [
+        {
+          "Expression": "idle",
+          "Priority": 2
+        },
+        {
+          "Expression": "beijingchuxian"
+        }
+      ]
+    },
+    "Expressions": [
+      {
+        "Name": "beijingchuxian",
+        "File": "beijingchuxian.exp3.json"
+      },
+      {
+        "Name": "idle",
+        "File": "idle.exp3.json"
+      }
+    ]
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": ["ParamEyeLOpen", "ParamEyeROpen"]
+    }
+  ],
+  "Controllers": {
+    "ParamHit": {},
+    "ParamLoop": {},
+    "KeyTrigger": {},
+    "ParamTrigger": {},
+    "AreaTrigger": {},
+    "HandTrigger": {},
+    "EyeBlink": {
+      "MinInterval": 500,
+      "MaxInterval": 6000,
+      "Enabled": true
+    },
+    "LipSync": {
+      "Gain": 5.0
+    },
+    "MouseTracking": {
+      "SmoothTime": 0.15,
+      "Enabled": true
+    },
+    "AutoBreath": {
+      "Enabled": true
+    },
+    "ExtraMotion": {
+      "Enabled": true
+    },
+    "Accelerometer": {
+      "Enabled": true
+    },
+    "Microphone": {},
+    "Transform": {},
+    "FaceTracking": {
+      "Enabled": true
+    },
+    "HandTracking": {},
+    "ParamValue": {},
+    "PartOpacity": {},
+    "ArtmeshOpacity": {},
+    "ArtmeshColor": {},
+    "ArtmeshCulling": {
+      "DefaultMode": 0
+    },
+    "IntimacySystem": {}
+  },
+  "Options": {
+    "TexType": 0
+  }
+}

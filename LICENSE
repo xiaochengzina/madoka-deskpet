@@ -1,0 +1,37 @@
+MIT License
+
+Copyright (c) 2026 小城子
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-----------------------------------------------------------------------
+
+本许可证仅适用于本仓库中由作者编写的代码文件
+（index.html、main.js、skin.json 及相关文档）。
+
+不适用于：
+- model/ 目录下的 Live2D 模型资产——适用 model/LICENSE 的单独条款；
+- 第三方组件——适用其各自许可证，详见 NOTICE.txt。
+
+This license applies only to the original code written by the author
+(index.html, main.js, skin.json and related documentation).
+
+It does NOT apply to:
+- the Live2D model assets under model/ — see model/LICENSE;
+- third-party components — see NOTICE.txt for their respective licenses.

@@ -1,0 +1,27 @@
+模型资产许可证 / Model Assets License
+=====================================
+
+本目录下的 Live2D 模型资产（包括 339.moc3、贴图、物理配置、
+表情配置及 339.model3.json 等全部文件）由画师【画师署名】创作，
+小城子已买断其著作财产权。
+
+The Live2D model assets in this directory (including 339.moc3, textures,
+physics/expression configs, 339.model3.json and all other files) were
+created by the artist 【画师署名】; all economic copyrights have been
+transferred to 小城子 (full buyout).
+
+授权条款 / Terms
+----------------
+
+保留所有权利。本目录下的模型资产仅允许作为「Madoka 桌宠」皮肤的
+组成部分随皮肤包一并使用；不得单独提取、复制、再分发、修改或
+用于任何其他作品。
+
+All rights reserved. The model assets in this directory may only be used
+as an integral part of the "Madoka Desk Pet" skin package. You may NOT
+extract, copy, redistribute, modify them separately, or use them in any
+other work.
+
+（本目录资产不适用仓库根目录的 MIT 许可证。）
+(The assets in this directory are NOT covered by the MIT license
+at the repository root.)

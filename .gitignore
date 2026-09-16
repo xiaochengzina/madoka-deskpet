@@ -1,0 +1,10 @@
+# Live2D Cubism Core 是 Live2D Inc. 的专有软件，不提交进本仓库。
+# 从源码运行 / 打包 .dskin 前，请先从 Live2D 官网下载 Cubism SDK for Web，
+# 将其中的 live2dcubismcore.min.js 重命名为 cubismcore.min.js 放入本目录。
+# 详见 README.md「从源码运行」一节。
+cubismcore.min.js
+
+# 用户数据与打包产物（pack-skin 也会自动排除）
+settings.json
+settings.json.*
+*.dskin

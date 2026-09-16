@@ -1,0 +1,49 @@
+本皮肤包含以下第三方组件，它们不适用本仓库的 MIT 许可证：
+This skin bundles the following third-party components, which are NOT
+covered by the MIT license of this repository:
+
+======================================================================
+
+1. Live2D Cubism Core（cubismcore.min.js）
+
+   (C) 2019 Live2D Inc. All rights reserved.
+
+   专有软件。本文件属于 Live2D 专有软件许可协议中的「可再分发代码」
+   (Redistributable Code)，依据该协议第 5 条以原样形式随本皮肤附带，
+   仅作为本皮肤的组成部分提供给最终用户使用。
+
+   您不得：单独提取、修改、反向工程或再分发本文件；不得将其用于
+   本皮肤以外的任何作品；不得对其适用任何其他许可证。
+
+   完整协议：
+   https://www.live2d.com/eula/live2d-proprietary-software-license-agreement_en.html
+
+   Proprietary software. This file is the "Redistributable Code" under
+   the Live2D Proprietary Software License Agreement, bundled as-is with
+   this skin pursuant to Section 5 of that agreement, solely as a part
+   of this skin for end users.
+
+   You may NOT extract, modify, reverse engineer or redistribute this
+   file separately, use it in any work other than this skin, or apply
+   any other license to it.
+
+======================================================================
+
+2. PixiJS v6.5.10（pixi.min.js）
+
+   MIT License — Copyright (c) 2013-2023 Mathew Groves, Chad Engler
+   and the contributors of PixiJS.
+   https://github.com/pixijs/pixijs
+
+======================================================================
+
+3. pixi-live2d-display（live2d.min.js）
+
+   MIT License — Copyright (c) 2020 Guan
+   https://github.com/guansss/pixi-live2d-display
+
+======================================================================
+
+安装使用本皮肤即表示您同意上述第三方组件条款。
+By installing and using this skin, you agree to the third-party
+component terms above.
