@@ -1,6 +1,6 @@
 // Madoka DeskPet —— Driftlet 皮肤
 // 模型: Cubism 3 (moc3) via pixi-live2d-display + Cubism Core
-// 功能: 鼠标跟随 / 自动眨眼 / 自然呼吸 / 发光表情（常亮 + 自动脉冲）/ 设置联动
+// 功能: 鼠标跟随 / 自动眨眼 / 自然呼吸 / 发光表情（常亮 + 自动脉冲）/ 长跑自刷新 / 设置联动
 //
 // Driftlet 皮肤协议适配：
 //   页面经 skin:// 协议加载，Windows WebView2 改写为 http://skin.localhost/<id>/。
@@ -15,6 +15,12 @@
 // 眨眼说明：
 //   库只在 model3.json 含 "Groups" 段（Name=EyeBlink）时才创建 eyeBlink——
 //   已在 model 文件夹的 model3.json 补上该段。开关经 eyeBlink.setBlinkingInterval 实现。
+//
+// 长跑自刷新说明（皮肤开发指南 §3.7）：
+//   WebView 连跑多天会自然累积内存，皮肤可在「自己状态安全的时刻」调 location.reload()
+//   回到干净基线。本皮肤是重 WebGL（Live2D 模型 + 大纹理），按指南建议取 12 小时一档。
+//   安全点判定：模型就绪、发光脉冲未进行、用户刚没交互过（设置写入可能在途）；
+//   不安全则顺延 1 小时重试（与官方 examples/shared/base.js 的 Isles.selfRefresh 同口径）。
 (() => {
   'use strict';
 
@@ -44,6 +50,8 @@
       model_scale: s.model_scale ?? 1.0,
       mouse_tracking: s.mouse_tracking ?? false,
       auto_blink: s.auto_blink ?? true,
+      auto_refresh: s.auto_refresh ?? true,
+      refresh_hours: s.refresh_hours ?? 12,
     };
   }
 
@@ -58,6 +66,11 @@
   let modelReady = false;
   let glowPulseTimer = 0;
   let glowRestoreTimer = 0;
+  let selfRefreshTimer = 0;
+  // 发光脉冲是否正在演出（自刷新的安全点判定要用：半途重载会把脉冲切成两截）
+  let glowPulsing = false;
+  // 最近一次用户交互时刻（performance.now()；0 = 本次页面还没交互过）
+  let lastInteractionAt = 0;
   // 发光常亮状态的唯一事实源（不用桥 settings——自己写设置后它是异步同步的，
   // 立刻回读会拿到旧值，曾导致「点击关常亮后自动脉冲不再排期」的竞态）
   let glowOn = false;
@@ -152,6 +165,7 @@
     clearTimeout(glowRestoreTimer);
     glowPulseTimer = 0;
     glowRestoreTimer = 0;
+    glowPulsing = false;
   }
 
   function applyGlowState() {
@@ -173,12 +187,72 @@
 
   function fireGlowPulse() {
     if (!modelReady || glowOn || !getSettings().auto_glow) return;
+    glowPulsing = true;
     applyExpression('beijingchuxian');
     // 持续 3~6s 后恢复，并预约下一次
     glowRestoreTimer = setTimeout(() => {
+      glowPulsing = false;
       if (!glowOn) applyExpression('idle');
       scheduleGlowPulse();
     }, 3000 + Math.random() * 3000);
+  }
+
+  // ── 长跑自刷新（皮肤开发指南 §3.7） ──
+  // 重 WebGL 皮肤：连续运行每 12 小时回到干净基线一次（间隔可在设置里调/可关）。
+  // 重载后页面照常启动，宿主烘焙的入场淡入会自动重播，用户只看到一次普通淡入。
+  // 只有皮肤自己知道什么时候刷新是安全的——不安全就顺延 1 小时再试，
+  // 重载后计时链从 0 重走，因此不会叠加定时器。
+  const SELF_REFRESH_RETRY_MS = 3600 * 1000;  // 不安全顺延：1 小时
+  const INTERACTION_QUIET_MS = 10000;         // 交互后静默窗：10 秒内不刷
+  const REFRESH_HOURS_DEFAULT = 12;           // 重 JS / WebGL 皮肤建议档
+  const REFRESH_HOURS_MIN = 1;
+  const REFRESH_HOURS_MAX = 24;
+  // 自刷新配置的唯一事实源（同 glowOn 的理由：桥 settings 的同步时机不可依赖，
+  // 管理器侧改动读事件里的 value 最稳）
+  let selfRefreshOn = true;
+  let selfRefreshHours = REFRESH_HOURS_DEFAULT;
+
+  function clampRefreshHours(h) {
+    const n = Number(h);
+    if (!Number.isFinite(n)) return REFRESH_HOURS_DEFAULT;
+    return Math.min(REFRESH_HOURS_MAX, Math.max(REFRESH_HOURS_MIN, n));
+  }
+
+  function selfRefreshSafeNow() {
+    // 模型没就绪（加载中/加载失败）不是基线，重载只会再来一遍
+    if (!modelReady || !model) return false;
+    // 发光脉冲演到一半：等它演完再刷，别把脉冲切成两截
+    if (glowPulsing) return false;
+    // 刚交互过：点击会写 glow 设置（skin_set_setting 在途），等落盘后再刷
+    if (performance.now() - lastInteractionAt < INTERACTION_QUIET_MS) return false;
+    return true;
+  }
+
+  function selfRefreshTick() {
+    if (selfRefreshSafeNow()) {
+      console.log('[Live2D Waifu] Self-refresh: reload for a clean baseline');
+      location.reload();
+      // 兜底：重载真的发生时页面随即销毁、这条排期跟着消失；万一因故没生效，
+      // 下面这行会让它 1 小时后重新排队，自刷新不会静默失效
+    }
+    // 不安全 → 顺延 1 小时再试
+    selfRefreshTimer = setTimeout(selfRefreshTick, SELF_REFRESH_RETRY_MS);
+  }
+
+  // 排期/撤期（设置变更时重排；关闭自动刷新 = 撤掉定时器，本地皮肤就是这么关的）
+  function armSelfRefresh() {
+    clearTimeout(selfRefreshTimer);
+    selfRefreshTimer = 0;
+    if (!selfRefreshOn) return;
+    selfRefreshTimer = setTimeout(selfRefreshTick, selfRefreshHours * 3600 * 1000);
+  }
+
+  // 启动时按桥烘焙的设置取初值（缺省：开、12 小时）
+  function initSelfRefresh() {
+    const cfg = getSettings();
+    selfRefreshOn = cfg.auto_refresh !== false;
+    selfRefreshHours = clampRefreshHours(cfg.refresh_hours);
+    armSelfRefresh();
   }
 
   // ── 鼠标跟随 ──
@@ -286,6 +360,16 @@
       case 'auto_blink':
         applyBlinkSetting();
         break;
+      case 'auto_refresh':
+        // 关 = 撤掉排期；开 = 从当下重新计时
+        selfRefreshOn = !!value;
+        armSelfRefresh();
+        break;
+      case 'refresh_hours':
+        // 改间隔也从当下重新计时（value 来自事件，不依赖桥同步时机）
+        selfRefreshHours = clampRefreshHours(value);
+        armSelfRefresh();
+        break;
     }
   }
 
@@ -300,6 +384,12 @@
         const { key } = e.detail || {};
         if (key === 'width' || key === 'height') setTimeout(resizeCanvas, 50);
       });
+      // 用户交互计时（自刷新安全点用）：捕获阶段，点画布/点模型都算
+      container.addEventListener('pointerdown', () => {
+        lastInteractionAt = performance.now();
+      }, true);
+      // 长跑自刷新排期（模型加载失败也排——重载本身就是一次恢复机会）
+      initSelfRefresh();
       console.log('[Live2D Waifu] Started, id:', SKIN_ID, 'driftlet:', IS_DRIFTLET);
     } catch (err) {
       showError('初始化失败: ' + (err?.message || err));

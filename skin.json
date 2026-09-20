@@ -2,7 +2,7 @@
   "id": "madoka-deskpet",
   "name_zh": "Madoka 桌宠",
   "name_en": "Madoka DeskPet",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "小城子",
   "description_zh": "Live 2D 桌面宠物 —— 鼠标跟随、眨眼呼吸、点击切换发光表情",
   "description_en": "Live 2D desktop pet — mouse tracking, eye blink, breath, tap to toggle glow",
@@ -77,6 +77,31 @@
       "description_zh": "模型自动眨眼",
       "description_en": "Model auto blinks",
       "default": true
+    },
+    {
+      "key": "auto_refresh",
+      "type": "boolean",
+      "label_zh": "自动刷新",
+      "label_en": "Auto Refresh",
+      "group_zh": "性能与长跑",
+      "group_en": "Performance & Long-run",
+      "description_zh": "长时间运行后自动重载页面，释放累积内存；重载时模型会淡入一次",
+      "description_en": "Periodically reloads the page to release accumulated memory; the model fades in once per reload",
+      "default": true
+    },
+    {
+      "key": "refresh_hours",
+      "type": "slider",
+      "label_zh": "刷新间隔（小时）",
+      "label_en": "Refresh Interval (hours)",
+      "group_zh": "性能与长跑",
+      "group_en": "Performance & Long-run",
+      "description_zh": "重 WebGL 皮肤建议 12 小时；模型加载较慢时可调大，改动后从当下重新计时",
+      "description_en": "12 hours is recommended for heavy WebGL skins; raise it if the model loads slowly. Changes restart the countdown",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 12
     }
   ]
 }

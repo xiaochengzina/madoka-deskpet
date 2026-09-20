@@ -18,6 +18,7 @@ A desktop-pet skin for [Driftlet](https://github.com/xiaochengzina/Driftlet) ren
 - 自动眨眼与自然呼吸
 - 点击切换发光表情；支持常亮发光与自动随机脉冲
 - 模型缩放（0.5×–2.0×）
+- 长跑自刷新：WebView 连跑多天会累积内存，本皮肤按 Driftlet《皮肤开发指南》§3.7 的建议（重 WebGL 皮肤 12 小时一档）自动 `location.reload()` 回到干净基线；只在安全点刷新——模型已就绪、发光脉冲已演完、用户 10 秒内无交互（点击会写设置，避免写入在途）——不安全则顺延 1 小时重试。间隔可在设置中调整或整个关闭
 - 中英双语设置面板，配置随管理器持久化
 
 ### 安装
@@ -67,6 +68,7 @@ A desktop-pet skin for [Driftlet](https://github.com/xiaochengzina/Driftlet) ren
 - Auto blink and natural breathing
 - Tap to toggle the glow expression; supports always-on glow and random auto pulses
 - Model scale from 0.5× to 2.0×
+- Long-run self-refresh: a WebView accumulates memory over days of uptime, so — following Driftlet's skin guide §3.7 (12-hour tier for heavy WebGL skins) — the skin calls `location.reload()` for a clean baseline. It only reloads at a safe point: model ready, no glow pulse in flight, and no user interaction in the last 10 seconds (a tap writes a setting, so an in-flight write must settle); otherwise it retries an hour later. The interval is adjustable in settings, or can be turned off entirely
 - Bilingual (Chinese/English) settings panel; preferences persist in the host manager
 
 ### Install
